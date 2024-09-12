@@ -1,0 +1,11 @@
+```latex
+\section{Introduction}
+
+There has been much interest in recent years in characterizing Sobolev spaces without using derivatives, and via weak-type norms. We refer the reader to the exposition of these developments in the papers of Domínguez and Milman \cite{4} and Frank \cite{5}, and the references therein. The work described here was motivated by the results in these papers, with the aim of applying dyadic analysis techniques to prove analogues in the discrete setting. Such techniques not only simplify the proofs but also lead to new embeddings for known function spaces.
+
+The function spaces concerned involve either the means or the mean oscillations of a locally integrable function $f$. For $f \in L^1_{\text{loc}}(\mathbb{R}^n, \mu)$, and any set $E$ of positive and finite measure $\mu(E)$, the mean of $f$ and the mean oscillation of $f$ on $E$ are given by
+\[
+f_E := \frac{\int_E f d\mu}{\mu(E)} := \frac{1}{\mu(E)} \int_E f \quad \text{and} \quad O(f, E) := \int_E |f - f_E| d\mu.
+\]
+
+Restricting $\mu$ to Lebesgue measure and $1 \leq p < \infty$, we consider, as in \cite
