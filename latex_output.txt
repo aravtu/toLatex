@@ -1,11 +1,50 @@
 ```latex
-\section{Introduction}
+\documentclass{article}
+\usepackage{amsmath}
 
-There has been much interest in recent years in characterizing Sobolev spaces without using derivatives, and via weak-type norms. We refer the reader to the exposition of these developments in the papers of Domínguez and Milman \cite{4} and Frank \cite{5}, and the references therein. The work described here was motivated by the results in these papers, with the aim of applying dyadic analysis techniques to prove analogues in the discrete setting. Such techniques not only simplify the proofs but also lead to new embeddings for known function spaces.
+\begin{document}
 
-The function spaces concerned involve either the means or the mean oscillations of a locally integrable function $f$. For $f \in L^1_{\text{loc}}(\mathbb{R}^n, \mu)$, and any set $E$ of positive and finite measure $\mu(E)$, the mean of $f$ and the mean oscillation of $f$ on $E$ are given by
+The formula for parametric equations, given by parameters $x$ and $y$, is given as:
+
 \[
-f_E := \frac{\int_E f d\mu}{\mu(E)} := \frac{1}{\mu(E)} \int_E f \quad \text{and} \quad O(f, E) := \int_E |f - f_E| d\mu.
+\frac{dy}{dx} = \frac{\frac{dy}{dt}}{\frac{dx}{dt}}
 \]
 
-Restricting $\mu$ to Lebesgue measure and $1 \leq p < \infty$, we consider, as in \cite
+For example:
+
+Let $x = t^2$ and $y = t^4$
+
+\[
+\frac{dx}{dt} = 2t \quad \frac{dy}{dt} = 4t^3
+\]
+
+\[
+\frac{dy}{dx} = \frac{\frac{dy}{dt}}{\frac{dx}{dt}} = \frac{4t^3}{2t} = 2t^2
+\]
+
+Since $x = t^2$,
+
+\[
+\frac{dy}{dx} = 2x
+\]
+
+We can also prove this by finding the Cartesian equation. From:
+
+\[
+y = t^4 \quad x = t^2
+\]
+
+\[
+x = t^2 \implies t = \sqrt{x}
+\]
+
+\[
+y = (x^{1/2})^4 = x^2
+\]
+
+\[
+\frac{dy}{dx} = 2x
+\]
+
+\end{document}
+```

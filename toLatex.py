@@ -52,11 +52,3 @@ def toLatex(image_path, output_file, api_key):
         print(f"LaTeX code has been saved to '{output_file}'")
     else:
         print(f"Error: {response.status_code} - {response.text}")
-
-# Example usage:
-api_key = "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"
-image_path = '/Users/arav/latexconvert/pythonProject/Screenshot 2024-09-12 at 4.42.01 PM.png'
-output_file = 'latex_output.txt'
-
-# Call the function
-toLatex(image_path, output_file, api_key)
