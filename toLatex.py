@@ -2,6 +2,9 @@ import base64
 import requests
 
 def toLatex(image_path, output_file, api_key):
+    """
+    Function to convert a single image to LaTeX using OpenAI's API.
+    """
     # Function to encode the image to base64
     def encode_image(image_path):
         with open(image_path, "rb") as image_file:
@@ -23,7 +26,7 @@ def toLatex(image_path, output_file, api_key):
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "Please generate the LaTeX code for this image. Don't say anything else. Please give it as plain text"},
+                    {"type": "text", "text": "Please generate a complete LaTeX document for this image, including the document structure with \documentclass, \begin{document}, and \end{document}. Ensure that the LaTeX code can be compiled directly. Provide the output as plain text and don't include any explanations."},
                     {
                         "type": "image_url",
                         "image_url": {
@@ -33,7 +36,7 @@ def toLatex(image_path, output_file, api_key):
                 ]
             }
         ],
-        "max_tokens": 300
+        "max_tokens": 1000
     }
 
     # Send the request to OpenAI API
