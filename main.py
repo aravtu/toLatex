@@ -35,7 +35,7 @@ def process_pdf(pdf_path, output_file_base, api_key):
     for page_number, image_path in enumerate(pdf_images, start=1):
         print(f"Processing page {page_number} image: {image_path}")
 
-        # Preprocess the image for OCR
+        ## Preprocess the image for OCR
         preprocessed_image = preprocess_image_for_ocr(image_path)
 
         # Create the output file name for this page (e.g., output_file_base_1.txt, output_file_base_2.txt)

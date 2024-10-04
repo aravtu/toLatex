@@ -30,7 +30,7 @@ def preprocess_image_for_ocr(input_image_path: str, output_image_path: str = Non
     if image is None:
         raise ValueError(f"Error: Could not read the image file '{input_image_path}'. Please check the file format.")
 
-    # Convert the image to grayscale
+    ## Convert the image to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Apply Gaussian Blur to reduce noise

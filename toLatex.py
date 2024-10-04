@@ -4,7 +4,7 @@ import subprocess
 
 
 def toLatex(image_path, output_file, api_key):
-    """
+    """"
     Function to convert a single image to LaTeX using OpenAI's API.
     """
     def encode_image(image_path):
