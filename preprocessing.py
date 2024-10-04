@@ -3,18 +3,19 @@ import os
 import fitz  # PyMuPDF to handle PDF reading
 import tempfile
 
+
 def is_image_blurry(image_path: str, threshold: float = 100.0) -> bool:
     """
     Check if the image is blurry based on the Laplacian variance.
     """
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
-    # Ensure the image was loaded successfully
     if image is None:
         raise ValueError(f"Error: Could not read the image file '{image_path}'. Please check the path.")
 
     laplacian_var = cv2.Laplacian(image, cv2.CV_64F).var()
     return laplacian_var < threshold
+
 
 def preprocess_image_for_ocr(input_image_path: str, output_image_path: str = None, blur_threshold: float = 100.0) -> str:
     """
@@ -24,7 +25,6 @@ def preprocess_image_for_ocr(input_image_path: str, output_image_path: str = Non
     if not os.path.exists(input_image_path):
         raise FileNotFoundError(f"Error: The file '{input_image_path}' does not exist.")
 
-    # Read the image
     image = cv2.imread(input_image_path)
 
     if image is None:
@@ -44,28 +44,24 @@ def preprocess_image_for_ocr(input_image_path: str, output_image_path: str = Non
     dilated = cv2.dilate(thresh, kernel, iterations=1)
     eroded = cv2.erode(dilated, kernel, iterations=1)
 
-    # If no output path is specified, save the preprocessed image with '_preprocessed' appended
     if not output_image_path:
         base_name, ext = os.path.splitext(input_image_path)
         output_image_path = f"{base_name}_preprocessed{ext}"
 
-    # Save the preprocessed image
     cv2.imwrite(output_image_path, eroded)
     return output_image_path
 
+
 def create_temp_folder():
-    """
-    Create a temporary directory to store the images.
-    """
     temp_dir = tempfile.mkdtemp()
     print(f"Temporary folder created at {temp_dir}")
     return temp_dir
 
+
 def pdf_to_images(pdf_path: str, temp_folder: str, resolution_scale: float = 2.0) -> list:
     """
     Convert each page of the PDF to an image and store it in the temp folder.
-    The resolution_scale allows control over the image quality (default is 2.0 for double resolution).
-    Returns a list of image paths.
+    The resolution_scale allows control over the image quality.
     """
     if not os.path.exists(pdf_path):
         raise FileNotFoundError(f"Error: The PDF file '{pdf_path}' does not exist.")
@@ -73,18 +69,15 @@ def pdf_to_images(pdf_path: str, temp_folder: str, resolution_scale: float = 2.0
     pdf_document = fitz.open(pdf_path)
     image_paths = []
 
-    # Loop over each page in the PDF and save it as an image
     for page_number in range(len(pdf_document)):
         page = pdf_document.load_page(page_number)
 
-        # Set zoom to increase resolution
-        zoom_matrix = fitz.Matrix(resolution_scale, resolution_scale)  # 2.0 for double resolution
+        zoom_matrix = fitz.Matrix(resolution_scale, resolution_scale)
         pix = page.get_pixmap(matrix=zoom_matrix)
 
-        # Define the output image path in the temp folder
         output_image_path = os.path.join(temp_folder, f"page_{page_number + 1}.png")
         pix.save(output_image_path)
         image_paths.append(output_image_path)
-        print(f"Saved page {page_number + 1} as image {output_image_path} with resolution scale {resolution_scale}")
+        print(f"Saved page {page_number + 1} as image {output_image_path}")
 
     return image_paths

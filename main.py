@@ -49,24 +49,21 @@ def process_pdf(pdf_path, output_file_base, api_key):
     print("PDF processing complete.")
 
 def main():
-    #input_type = input("Enter 'pdf' to process a PDF or 'image' to process an image: ").strip().lower()
-    input_type = "pdf"
+    input_type = input("Enter 'pdf' to process a PDF or 'image' to process an image: ").strip().lower()
 
     # Input for the file path (PDF or image)
-    # file_path = input(f"Enter the path to the {input_type} file: ").strip()
-    file_path = "C:/Users/Ben/Downloads/example_paper.pdf"
+    file_path = input(f"Enter the path to the {input_type} file: ").strip()
+
 
     if not os.path.exists(file_path):
         print(f"Error: The file '{file_path}' does not exist.")
         return
 
     # Input for the OpenAI API key
-    #api_key = input("Enter your OpenAI API key: ").strip()
-    api_key = "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"
+    api_key = input("Enter your OpenAI API key: ").strip()
 
     # Output LaTeX file base name
-    #output_file_base = input("Enter the base name for the output LaTeX files (e.g., latex_output): ").strip()
-    output_file_base = "latex_output"
+    output_file_base = input("Enter the base name for the output LaTeX files (e.g., latex_output): ").strip()
 
     # Process the file based on the type
     if input_type == 'pdf':
